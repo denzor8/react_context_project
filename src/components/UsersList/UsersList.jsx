@@ -1,10 +1,10 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect,useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { usersContext } from '../../usersContext'
 const UsersList = () => {
-	const { getUsers, users } = useContext(usersContext)
+	const { getUsers, users ,deleteUser} = useContext(usersContext)
 	const navigate = useNavigate()
-
+	
 	useEffect(() => {
 		getUsers()
 	}, [])
@@ -16,7 +16,7 @@ const UsersList = () => {
 					name: {item.name};
 					email: {item.email};
 					Age: {item.age};
-					<button>Delete</button>
+					<button onClick={()=>deleteUser(item.id)}>Delete</button>
 					<button onClick={() => navigate(`/edit/${item.id}`)}>Edit</button>
 					<button onClick={() => navigate(`/details/${item.id}`)}>Details</button>
 				</div>

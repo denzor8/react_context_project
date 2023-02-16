@@ -26,6 +26,10 @@ const UsersContextProvider = ({ children }) => {
 		await axios.patch(`${API}/${id}`, editedUser);
     getUsers();
 	}
+	async function deleteUser(id) { 
+    await axios.delete(`${API}/${id}`);
+    getUsers();
+  }
 
 	return (
 		<usersContext.Provider value={{
@@ -35,7 +39,8 @@ const UsersContextProvider = ({ children }) => {
 			getOneUser,
       updateUser,
 			getUsers,
-			createUser
+			createUser,
+			deleteUser
 		}}>
 			{children}
 		</usersContext.Provider>
